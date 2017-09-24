@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include <iostream>
-
+#include "player.h"
 
 
 class Game {

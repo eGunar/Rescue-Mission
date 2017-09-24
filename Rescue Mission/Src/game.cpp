@@ -1,5 +1,7 @@
 #include "game.h"
 
+Player* player;
+
 
 Game::Game()
 {
@@ -39,12 +41,14 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
+	player = new Player("player.png", 400, 340);
 }
 
 void Game::handleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
+	player->HandleEvents(event);
 	switch (event.type) {
 	case SDL_QUIT:
 		isRunning = false;
@@ -56,12 +60,13 @@ void Game::handleEvents()
 
 void Game::update()
 {
-
+	player->Update();
 }
 
 void Game::render()
 {
 	SDL_RenderClear(renderer);
+	player->Render();
 	SDL_RenderPresent(renderer);
 }
 

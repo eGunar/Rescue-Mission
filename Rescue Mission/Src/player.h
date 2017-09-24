@@ -8,7 +8,7 @@ public:
 	Player(const char* image, int x, int y);
 	~Player();
 
-	void HandleEvents();
+	void HandleEvents(SDL_Event event);
 	void Update();
 	void Render();
 
@@ -17,6 +17,12 @@ private:
 	int ypos;
 	int width;
 	int height;
+	int speed = 10;
+
+	bool movingLeft;
+	bool movingRight;
+	bool movingUp;
+	bool movingDown;
 
 	SDL_Texture* playerImage;
 	SDL_Rect srcRect, destRect;
