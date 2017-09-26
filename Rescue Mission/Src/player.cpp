@@ -1,9 +1,20 @@
 #include "player.h"
+#include "texturemanager.h"
 
 Player::Player(const char * image, int x, int y)
 {
+	texture = TextureManager::LoadTexture(image);
 	xpos = x;
 	ypos = y;
+
+	srcRect.h = 44;
+	srcRect.w = 44;
+	srcRect.x = 44;
+	srcRect.y = 44;
+
+	destRect.h = srcRect.h;
+	destRect.w = srcRect.w;
+
 }
 
 Player::~Player()
@@ -62,30 +73,36 @@ void Player::Update()
 {
 	if (movingLeft)
 	{
+		srcRect.x = 44;
+		srcRect.y = 0;
 		xpos = xpos - speed;
-		std::cout << xpos << std::endl;
 	}
 	else if (movingRight)
 	{
+		srcRect.x = 44;
+		srcRect.y = 44;
 		xpos = xpos + speed;
-		std::cout << xpos << std::endl;
 	}
 	else if (movingUp)
 	{
+		srcRect.x = 0;
+		srcRect.y = 44;
 		ypos = ypos - speed;
-		std::cout << ypos << std::endl;
 	}
 	else if (movingDown)
 	{
+		srcRect.x = 0;
+		srcRect.y = 0;
 		ypos = ypos + speed;
-		std::cout << ypos << std::endl;
 	}
+
+
 	destRect.x = xpos;
 	destRect.y = ypos;
-	destRect.h = srcRect.h * 2;
-	destRect.w = srcRect.w * 2;
+	
 }
 
 void Player::Render()
 {
+	TextureManager::Draw(texture, srcRect, destRect);
 }

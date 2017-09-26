@@ -1,11 +1,13 @@
 #include "game.h"
+#include "texturemanager.h"
 
 Player* player;
+SDL_Renderer* Game::renderer = nullptr;
 
 
 Game::Game()
 {
-
+	
 }
 
 Game::~Game()
@@ -24,11 +26,13 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
 		std::cout << "SDL Initialized...\n";
+
 		window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
 		if (window)
 		{
 			std::cout << "Window created\n";
 		}
+
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer)
 		{
@@ -41,7 +45,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
-	player = new Player("player.png", 400, 340);
+	player = new Player("assets/player.png", 400, 340);
 }
 
 void Game::handleEvents()

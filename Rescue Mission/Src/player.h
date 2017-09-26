@@ -17,7 +17,8 @@ private:
 	int ypos;
 	int width;
 	int height;
-	int speed = 10;
+	int speed = 5;
+	SDL_Texture* texture;
 
 	bool movingLeft;
 	bool movingRight;

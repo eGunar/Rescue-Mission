@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "SDL_image.h"
 #include <iostream>
 #include "player.h"
 
@@ -19,10 +20,12 @@ public:
 
 	bool running() { return isRunning; }
 
+	static SDL_Renderer* renderer;
+
 private:
 	bool isRunning;
 	SDL_Window *window;
-	SDL_Renderer *renderer;
+
 
 
 
