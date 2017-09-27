@@ -32,11 +32,11 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		{
 			std::cout << "Window created\n";
 		}
-
+		
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer)
 		{
-			SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+			SDL_SetRenderDrawColor(renderer, 8, 166, 19, 255);
 			std::cout << "Renderer created\n";
 		}
 		isRunning = true;
