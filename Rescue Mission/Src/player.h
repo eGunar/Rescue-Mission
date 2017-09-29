@@ -2,10 +2,11 @@
 #include "game.h"
 
 
+
 class Player
 {
 public:
-	Player(const char* image, int x, int y);
+	Player(int x, int y);
 	~Player();
 
 	void HandleEvents(SDL_Event event);
@@ -18,14 +19,13 @@ private:
 	int width;
 	int height;
 	int speed = 5;
-	SDL_Texture* texture;
 
 	bool movingLeft;
 	bool movingRight;
 	bool movingUp;
 	bool movingDown;
 
-	SDL_Texture* playerImage;
+	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;
 
 };

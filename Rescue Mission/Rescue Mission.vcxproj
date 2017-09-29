@@ -123,11 +123,13 @@
     <ClCompile Include="Src\game.cpp" />
     <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\player.cpp" />
+    <ClCompile Include="Src\prisoner.cpp" />
     <ClCompile Include="Src\texturemanager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\game.h" />
     <ClInclude Include="Src\player.h" />
+    <ClInclude Include="Src\prisoner.h" />
     <ClInclude Include="Src\texturemanager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

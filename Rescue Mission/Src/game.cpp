@@ -1,7 +1,7 @@
 #include "game.h"
-#include "texturemanager.h"
 
 Player* player;
+Prisoner* prisoner;
 SDL_Renderer* Game::renderer = nullptr;
 
 
@@ -45,7 +45,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
-	player = new Player("assets/player.png", 400, 340);
+	player = new Player(400, 340);
+	prisoner = new Prisoner(1000, 340);
 }
 
 void Game::handleEvents()
@@ -71,6 +72,7 @@ void Game::render()
 {
 	SDL_RenderClear(renderer);
 	player->Render();
+	prisoner->Render();
 	SDL_RenderPresent(renderer);
 }
 

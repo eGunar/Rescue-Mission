@@ -1,9 +1,9 @@
 #include "player.h"
-#include "texturemanager.h"
 
-Player::Player(const char * image, int x, int y)
+
+Player::Player(int x, int y)
 {
-	texture = TextureManager::LoadTexture(image);
+	texture = TextureManager::LoadTexture("assets/player.png");
 	xpos = x;
 	ypos = y;
 

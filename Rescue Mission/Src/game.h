@@ -3,6 +3,8 @@
 #include "SDL_image.h"
 #include <iostream>
 #include "player.h"
+#include "prisoner.h"
+#include "texturemanager.h"
 
 
 class Game {
