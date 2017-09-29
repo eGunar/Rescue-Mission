@@ -11,10 +11,10 @@ public:
 	void HandleEvents(SDL_Event event);
 	void Update();
 	void Render();
-
-private:
 	int xpos;
 	int ypos;
+
+private:
 	int width;
 	int height;
 	int speed = 5;
