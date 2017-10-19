@@ -1,29 +1,19 @@
 #pragma once
 #include "game.h"
 
-
-
-class Player
+class Enemy
 {
 public:
-	Player(int x, int y);
-	~Player();
+	Enemy(int x, int y);
+	~Enemy();
 
-	void HandleEvents(const SDL_Event& event);
 	void Update();
 	void Render();
-	int xpos;
-	int ypos;
 
 private:
 	int width_;
 	int height_;
 	int speed_ = 5;
-
-	bool movingLeft;
-	bool movingRight;
-	bool movingUp;
-	bool movingDown;
 
 	SDL_Texture* texture;
 	SDL_Rect srcRect;

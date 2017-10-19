@@ -21,7 +21,7 @@ Player::~Player()
 {
 }
 
-void Player::HandleEvents(SDL_Event event)
+void Player::HandleEvents(const SDL_Event& event)
 {
 	switch (event.type)
 	{
@@ -75,25 +75,25 @@ void Player::Update()
 	{
 		srcRect.x = 44;
 		srcRect.y = 0;
-		xpos = xpos - speed;
+		xpos = xpos - speed_;
 	}
 	else if (movingRight)
 	{
 		srcRect.x = 44;
 		srcRect.y = 44;
-		xpos = xpos + speed;
+		xpos = xpos + speed_;
 	}
 	else if (movingUp)
 	{
 		srcRect.x = 0;
 		srcRect.y = 44;
-		ypos = ypos - speed;
+		ypos = ypos - speed_;
 	}
 	else if (movingDown)
 	{
 		srcRect.x = 0;
 		srcRect.y = 0;
-		ypos = ypos + speed;
+		ypos = ypos + speed_;
 	}
 
 

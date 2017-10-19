@@ -11,15 +11,15 @@ int main(int argc, char *argv[])
 
 	game = new Game();
 
-	game->init("Rescue Mission", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, false);
+	game->Init("Rescue Mission", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, false);
 
 	while (game->running())
 	{
 		frameStart = SDL_GetTicks();
 
-		game->handleEvents();
-		game->update();
-		game->render();
+		game->HandleEvents();
+		game->Update();
+		game->Render();
 
 		frameTime = SDL_GetTicks() - frameStart;
 		if (dt > frameTime)
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	game->clean();
+	game->Clean();
 
 	return 0;
 }

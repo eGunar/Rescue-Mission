@@ -5,6 +5,7 @@
 #include "player.h"
 #include "prisoner.h"
 #include "texturemanager.h"
+#include "enemy.h"
 
 
 class Game {
@@ -13,12 +14,12 @@ public:
 	Game();
 	~Game();
 
-	void init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+	void Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
-	void handleEvents();
-	void update();
-	void render();
-	void clean();
+	void HandleEvents();
+	void Update();
+	void Render();
+	void Clean();
 
 	bool running() { return isRunning; }
 

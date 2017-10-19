@@ -15,7 +15,7 @@ Game::~Game()
 
 }
 
-void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
+void Game::Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
 	int flags = 0;
 	if (fullscreen)
@@ -49,7 +49,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	prisoner = new Prisoner(1000, 340);
 }
 
-void Game::handleEvents()
+void Game::HandleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
@@ -63,12 +63,12 @@ void Game::handleEvents()
 	}
 }
 
-void Game::update()
+void Game::Update()
 {
 	player->Update();
 }
 
-void Game::render()
+void Game::Render()
 {
 	SDL_RenderClear(renderer);
 	player->Render();
@@ -76,7 +76,7 @@ void Game::render()
 	SDL_RenderPresent(renderer);
 }
 
-void Game::clean()
+void Game::Clean()
 {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
