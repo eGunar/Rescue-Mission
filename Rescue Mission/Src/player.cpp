@@ -4,8 +4,8 @@
 Player::Player(int x, int y)
 {
 	texture = TextureManager::LoadTexture("assets/player.png");
-	xpos = x;
-	ypos = y;
+	x_ = x;
+	y_ = y;
 
 	srcRect.h = 44;
 	srcRect.w = 44;
@@ -75,30 +75,30 @@ void Player::Update()
 	{
 		srcRect.x = 44;
 		srcRect.y = 0;
-		xpos = xpos - speed_;
+		x_ = x_ - speed_;
 	}
 	else if (movingRight)
 	{
 		srcRect.x = 44;
 		srcRect.y = 44;
-		xpos = xpos + speed_;
+		x_ = x_ + speed_;
 	}
 	else if (movingUp)
 	{
 		srcRect.x = 0;
 		srcRect.y = 44;
-		ypos = ypos - speed_;
+		y_ = y_ - speed_;
 	}
 	else if (movingDown)
 	{
 		srcRect.x = 0;
 		srcRect.y = 0;
-		ypos = ypos + speed_;
+		y_ = y_ + speed_;
 	}
 
 
-	destRect.x = xpos;
-	destRect.y = ypos;
+	destRect.x = x_;
+	destRect.y = y_;
 	
 }
 

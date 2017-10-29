@@ -12,8 +12,8 @@ public:
 	void HandleEvents(const SDL_Event& event);
 	void Update();
 	void Render();
-	int xpos;
-	int ypos;
+	int x_;
+	int y_;
 
 private:
 	int width_;
