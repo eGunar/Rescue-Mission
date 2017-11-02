@@ -1,11 +1,12 @@
 #include "player.h"
 
 
-Player::Player(int x, int y)
+Player::Player(float x, float y)
 {
 	texture = TextureManager::LoadTexture("assets/player.png");
-	x_ = x;
-	y_ = y;
+
+	pos_.x_ = x;
+	pos_.y_ = y;
 
 	srcRect.h = 44;
 	srcRect.w = 44;
@@ -69,40 +70,76 @@ void Player::HandleEvents(const SDL_Event& event)
 	};
 }
 
-void Player::Update()
+void Player::Update(double dt)
 {
 	if (movingLeft)
 	{
-		srcRect.x = 44;
-		srcRect.y = 0;
-		x_ = x_ - speed_;
+		ChangeDir('l');
 	}
 	else if (movingRight)
 	{
-		srcRect.x = 44;
-		srcRect.y = 44;
-		x_ = x_ + speed_;
+		ChangeDir('r');
 	}
 	else if (movingUp)
 	{
-		srcRect.x = 0;
-		srcRect.y = 44;
-		y_ = y_ - speed_;
+		ChangeDir('u');
 	}
 	else if (movingDown)
 	{
-		srcRect.x = 0;
-		srcRect.y = 0;
-		y_ = y_ + speed_;
+		ChangeDir('d');
+	}
+	else
+	{
+		v_.x_ = 0;
+		v_.y_ = 0;
 	}
 
+	pos_ = pos_.AddVector(v_);
+	destRect.x = pos_.x_;
+	destRect.y = pos_.y_;
 
-	destRect.x = x_;
-	destRect.y = y_;
+
 	
 }
 
 void Player::Render()
 {
 	TextureManager::Draw(texture, srcRect, destRect);
+}
+
+
+
+void Player::ChangeDir(const char direction)
+{
+	if (direction == 'd')
+	{
+		v_.x_ = 0 * speed_;
+		v_.y_ = 1 * speed_;
+		srcRect.x = 0;
+		srcRect.y = 0;
+	}
+	else if (direction == 'u')
+	{
+		v_.x_ = 0 * speed_;
+		v_.y_ = -1 * speed_;
+		srcRect.x = 0;
+		srcRect.y = 44;
+
+	}
+	else if (direction == 'l')
+	{
+		v_.x_ = -1 * speed_;
+		v_.y_ = 0 * speed_;
+		srcRect.x = 44;
+		srcRect.y = 0;
+
+	}
+	else if (direction == 'r')
+	{
+		v_.x_ = 1 * speed_;
+		v_.y_ = 0 * speed_;
+		srcRect.x = 44;
+		srcRect.y = 44;
+
+	}
 }

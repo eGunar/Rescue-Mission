@@ -1,24 +1,27 @@
 #pragma once
 #include "game.h"
-
+#include "vector.h"
 
 
 class Player
 {
 public:
-	Player(int x, int y);
+	Player(float x, float y);
 	~Player();
 
 	void HandleEvents(const SDL_Event& event);
-	void Update();
+	void Update(double dt);
 	void Render();
-	int x_;
-	int y_;
+	Point pos_;
 
 private:
+	void ChangeDir(const char direction);
+
+	Vector v_;
 	int width_;
 	int height_;
-	int speed_ = 5;
+	float speed_ = 10.f;
+
 
 	bool movingLeft;
 	bool movingRight;

@@ -46,7 +46,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
-	player = new Player(400, 340);
+	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
 	enemy = new Enemy(500, 500);
 }
@@ -65,10 +65,10 @@ void Game::HandleEvents()
 	}
 }
 
-void Game::Update()
+void Game::Update(double dt)
 {
-	player->Update();
-	enemy->Update();
+	player->Update(dt);
+	enemy->Update(dt);
 }
 
 void Game::Render()

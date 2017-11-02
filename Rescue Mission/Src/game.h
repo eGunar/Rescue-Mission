@@ -6,6 +6,7 @@
 #include "prisoner.h"
 #include "texturemanager.h"
 #include "enemy.h"
+#include "vector.h"
 
 
 
@@ -18,7 +19,7 @@ public:
 	void Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
 	void HandleEvents();
-	void Update();
+	void Update(double dt);
 	void Render();
 	void Clean();
 
@@ -34,3 +35,6 @@ private:
 
 
 };
+
+
+

@@ -126,6 +126,8 @@
     <ClCompile Include="Src\player.cpp" />
     <ClCompile Include="Src\prisoner.cpp" />
     <ClCompile Include="Src\texturemanager.cpp" />
+    <ClCompile Include="Src\timer.cpp" />
+    <ClCompile Include="Src\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\enemy.h" />
@@ -133,6 +135,8 @@
     <ClInclude Include="Src\player.h" />
     <ClInclude Include="Src\prisoner.h" />
     <ClInclude Include="Src\texturemanager.h" />
+    <ClInclude Include="Src\timer.h" />
+    <ClInclude Include="Src\vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

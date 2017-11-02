@@ -5,9 +5,12 @@ Game *game = nullptr;
 int main(int argc, char *argv[])
 {
 	const int FPS = 60;
-	const int dt = 1000 / FPS;
-	Uint32 frameStart;
-	int frameTime;
+	const int frameTime = 1000 / FPS;
+
+
+	Uint64 NOW = SDL_GetPerformanceCounter();
+	Uint64 LAST = 0;
+	double dt = 0;
 
 	game = new Game();
 
@@ -15,16 +18,23 @@ int main(int argc, char *argv[])
 
 	while (game->running())
 	{
-		frameStart = SDL_GetTicks();
+		LAST = NOW;
+		NOW = SDL_GetPerformanceCounter();
+		dt = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() ) * 0.001;
+		if (dt > 0.016)
+		{
+			dt = 0.0016;
+		}
+
 
 		game->HandleEvents();
-		game->Update();
+		game->Update(dt);
 		game->Render();
 
-		frameTime = SDL_GetTicks() - frameStart;
-		if (dt > frameTime)
+
+		if (frameTime > dt)
 		{
-			SDL_Delay(dt - frameTime);
+			SDL_Delay(frameTime - dt);
 		}
 	}
 
