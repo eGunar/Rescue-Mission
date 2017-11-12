@@ -1,5 +1,6 @@
 #pragma once
 #include "game.h"
+#include "vector.h"
 
 class Enemy
 {
@@ -10,17 +11,16 @@ public:
 	void Update(double dt);
 	void Render();
 	Point pos_;
-	float x_;
-	float y_;
 
 private:
 	int width_ = 44;
 	int height_ = 44;
-	float speed_ = 500.f;
-	float vy_ = 0.f;
-	float vx_ = 0.f;
+	float speed_ = 5.f;
 	bool circle_active_ = false;
 	int a = 0;
+	Vector v_;
+	Point start_pos_;
+	float distance = 200.f;
 
 	void ChangeDir(const char direction);
 	void CirclePattern();

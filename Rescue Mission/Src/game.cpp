@@ -3,6 +3,7 @@
 Player* player;
 Prisoner* prisoner;
 Enemy* enemy;
+Enemy* enemy2;
 SDL_Renderer* Game::renderer = nullptr;
 
 
@@ -49,6 +50,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
 	enemy = new Enemy(500, 500);
+	enemy2 = new Enemy(600, 500);
 }
 
 void Game::HandleEvents()
@@ -69,6 +71,7 @@ void Game::Update(double dt)
 {
 	player->Update(dt);
 	enemy->Update(dt);
+	enemy2->Update(dt);
 }
 
 void Game::Render()
@@ -77,6 +80,7 @@ void Game::Render()
 	player->Render();
 	prisoner->Render();
 	enemy->Render();
+	enemy2->Render();
 	SDL_RenderPresent(renderer);
 }
 

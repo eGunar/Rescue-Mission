@@ -6,6 +6,7 @@ Enemy::Enemy(int x, int y)
 	texture = TextureManager::LoadTexture("assets/enemy.png");
 	pos_.x_ = x;
 	pos_.y_ = y;
+	start_pos_ = pos_;
 
 	srcRect.h = 44;
 	srcRect.w = 44;
@@ -34,8 +35,9 @@ void Enemy::Update(double dt)
 //		ChangeDir('d');
 //	}
 	CirclePattern();
-	pos_.y_ = pos_.y_ + vy_ * dt;
-	pos_.x_ = pos_.x_ + vx_ * dt;
+
+	pos_ = pos_.AddVector(v_);
+
 
 	//std::cout << "x " << int(vx_*dt*10) << " y " << int(vy_*dt*10) << " a " << a << std::endl;
 	
@@ -57,31 +59,31 @@ void Enemy::ChangeDir(const char direction)
 {
 	if (direction == 'd')
 	{
-		vy_ = 1 * speed_;
-		vx_ = 0 * speed_;
+		v_.x_ = 0 * speed_;
+		v_.y_ = 1 * speed_;
 		srcRect.x = 0;
 		srcRect.y = 0;
 	}
 	else if (direction == 'u')
 	{
-		vy_ = -1 * speed_;
-		vx_ = 0 * speed_;
+		v_.x_ = 0 * speed_;
+		v_.y_ = -1 * speed_;
 		srcRect.x = 0;
 		srcRect.y = 44;
 
 	}
 	else if (direction == 'l')
 	{
-		vy_ = 0 * speed_;
-		vx_ = -1 * speed_;
+		v_.x_ = -1 * speed_;
+		v_.y_ = 0 * speed_;
 		srcRect.x = 44;
 		srcRect.y = 0;
 
 	}
 	else if (direction == 'r')
 	{
-		vy_ = 0 * speed_;
-		vx_ = 1 * speed_;
+		v_.x_ = 1 * speed_;
+		v_.y_ = 0 * speed_;
 		srcRect.x = 44;
 		srcRect.y = 44;
 
@@ -91,30 +93,28 @@ void Enemy::ChangeDir(const char direction)
 
 void Enemy::CirclePattern()
 {
-	a++;
-
-	if (a < 40)
+	//a++;
+	std::cout << pos_.x_ << pos_.y_ << std::endl;
+	std::cout << start_pos_.x_ << start_pos_.y_ << std::endl;
+	if ((pos_.x_ == start_pos_.x_) && (pos_.y_ == start_pos_.y_))
 	{
 		ChangeDir('u');
 	}
 
-	else if ((a > 40) && (a < 80))
+	else if ((pos_.x_ == start_pos_.x_) && (pos_.y_ == start_pos_.y_ - distance))
 	{
 		ChangeDir('r');
 	}
 
-	else if (a > 80 && a < 120)
+	else if ((pos_.x_ == start_pos_.x_ + distance) && (pos_.y_ == start_pos_.y_ - distance))
 	{
 		ChangeDir('d');
 	}
-	else if (a > 120 && a < 159)
+	else if ((pos_.x_ == start_pos_.x_ + distance) && (pos_.y_ == start_pos_.y_))
 	{
-		ChangeDir('l');
+		ChangeDir('l');	
 	}
-	else if (a > 159)
-	{
-		a = 0;
-	}
+
 //	else
 	//{
 		//vy_ = 0;
