@@ -34,9 +34,13 @@ void Enemy::Update(double dt)
 //	{
 //		ChangeDir('d');
 //	}
-	CirclePattern();
 
-	pos_ = pos_.AddVector(v_);
+	motion_ = v_;
+	motion_.x_ *= dt;
+	motion_.y_ *= dt;
+	CirclePattern();
+	pos_ = pos_.AddVector(motion_);
+
 
 
 	//std::cout << "x " << int(vx_*dt*10) << " y " << int(vy_*dt*10) << " a " << a << std::endl;
@@ -93,9 +97,6 @@ void Enemy::ChangeDir(const char direction)
 
 void Enemy::CirclePattern()
 {
-	//a++;
-	std::cout << pos_.x_ << pos_.y_ << std::endl;
-	std::cout << start_pos_.x_ << start_pos_.y_ << std::endl;
 	if ((pos_.x_ == start_pos_.x_) && (pos_.y_ == start_pos_.y_))
 	{
 		ChangeDir('u');

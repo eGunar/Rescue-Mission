@@ -21,10 +21,6 @@ int main(int argc, char *argv[])
 		LAST = NOW;
 		NOW = SDL_GetPerformanceCounter();
 		dt = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() ) * 0.001;
-		if (dt > 0.016)
-		{
-			dt = 0.0016;
-		}
 
 
 		game->HandleEvents();

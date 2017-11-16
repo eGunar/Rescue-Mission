@@ -93,8 +93,11 @@ void Player::Update(double dt)
 		v_.x_ = 0;
 		v_.y_ = 0;
 	}
-
-	pos_ = pos_.AddVector(v_);
+	Vector motion = v_;
+	motion.x_ *= dt;
+	motion.y_ *= dt;
+	pos_ = pos_.AddVector(motion);
+	std::cout << motion.Length() << std::endl;
 	destRect.x = pos_.x_;
 	destRect.y = pos_.y_;
 

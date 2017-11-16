@@ -8,3 +8,8 @@ Point Point::AddVector(Vector v)
 	
 	return p2;
 }
+
+float Vector::Length()
+{
+	return sqrtf(x_ * x_ + y_ *y_);
+}

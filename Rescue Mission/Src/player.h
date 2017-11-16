@@ -20,8 +20,8 @@ private:
 	Vector v_;
 	int width_;
 	int height_;
-	float speed_ = 10.f;
-
+	float speed_ = 300.f;
+	int animation_ = 0;
 
 	bool movingLeft;
 	bool movingRight;

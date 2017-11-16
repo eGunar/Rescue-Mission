@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cmath>
 
 class Vector 
 {
@@ -7,6 +7,7 @@ public:
 	float x_;
 	float y_;
 
+	float Length();
 };
 
 class Point

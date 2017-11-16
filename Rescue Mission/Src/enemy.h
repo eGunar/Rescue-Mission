@@ -15,10 +15,11 @@ public:
 private:
 	int width_ = 44;
 	int height_ = 44;
-	float speed_ = 5.f;
+	float speed_ = 300.f;
 	bool circle_active_ = false;
 	int a = 0;
 	Vector v_;
+	Vector motion_;
 	Point start_pos_;
 	float distance = 200.f;
 
