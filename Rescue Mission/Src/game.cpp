@@ -50,6 +50,10 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
 	enemy = new Enemy(500, 500);
+	enemy->points_.push_back(Point(100, 300));
+	enemy->points_.push_back(Point(300, 300));
+	enemy->points_.push_back(Point(500, 500));
+
 	enemy2 = new Enemy(600, 500);
 }
 

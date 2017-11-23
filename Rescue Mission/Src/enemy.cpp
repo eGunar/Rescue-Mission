@@ -18,6 +18,8 @@ Enemy::Enemy(int x, int y)
 	destRect.h = srcRect.h;
 	destRect.w = srcRect.w;
 
+
+
 }
 
 Enemy::~Enemy()
@@ -38,11 +40,32 @@ void Enemy::Update(double dt)
 	motion_ = v_;
 	motion_.x_ *= dt;
 	motion_.y_ *= dt;
-	CirclePattern();
-	pos_ = pos_.AddVector(motion_);
+	if (!points_.empty())
+	{
+		Point& next_point = points_[current_point_];
+		Vector to_point = Vector(next_point.x_ - pos_.x_, next_point.y_ - pos_.y_);
+		float distance_to_point = to_point.Length();
+		Vector motion = to_point;
+		motion.x_ = motion.x_ / distance_to_point * speed_ * dt;
+		motion.y_ = motion.y_ / distance_to_point * speed_ * dt;
+		float motion_distance = motion.Length();
+
+		if (motion_distance >= distance_to_point)
+		{
+			pos_ = next_point;
+
+			current_point_ = (current_point_ + 1) % points_.size();
+		}
+		else
+		{
+			pos_ = pos_.AddVector(motion);
+		}
+	}
 
 
 
+
+	
 	//std::cout << "x " << int(vx_*dt*10) << " y " << int(vy_*dt*10) << " a " << a << std::endl;
 	
 	destRect.y = pos_.y_;
@@ -57,71 +80,3 @@ void Enemy::Render()
 {
 	TextureManager::Draw(texture, srcRect, destRect);
 }
-
-
-void Enemy::ChangeDir(const char direction)
-{
-	if (direction == 'd')
-	{
-		v_.x_ = 0 * speed_;
-		v_.y_ = 1 * speed_;
-		srcRect.x = 0;
-		srcRect.y = 0;
-	}
-	else if (direction == 'u')
-	{
-		v_.x_ = 0 * speed_;
-		v_.y_ = -1 * speed_;
-		srcRect.x = 0;
-		srcRect.y = 44;
-
-	}
-	else if (direction == 'l')
-	{
-		v_.x_ = -1 * speed_;
-		v_.y_ = 0 * speed_;
-		srcRect.x = 44;
-		srcRect.y = 0;
-
-	}
-	else if (direction == 'r')
-	{
-		v_.x_ = 1 * speed_;
-		v_.y_ = 0 * speed_;
-		srcRect.x = 44;
-		srcRect.y = 44;
-
-	}
-}
-
-
-void Enemy::CirclePattern()
-{
-	if ((pos_.x_ == start_pos_.x_) && (pos_.y_ == start_pos_.y_))
-	{
-		ChangeDir('u');
-	}
-
-	else if ((pos_.x_ == start_pos_.x_) && (pos_.y_ == start_pos_.y_ - distance))
-	{
-		ChangeDir('r');
-	}
-
-	else if ((pos_.x_ == start_pos_.x_ + distance) && (pos_.y_ == start_pos_.y_ - distance))
-	{
-		ChangeDir('d');
-	}
-	else if ((pos_.x_ == start_pos_.x_ + distance) && (pos_.y_ == start_pos_.y_))
-	{
-		ChangeDir('l');	
-	}
-
-//	else
-	//{
-		//vy_ = 0;
-	//	vx_ = 0;
-	//}
-
-
-}
-

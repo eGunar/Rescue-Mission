@@ -1,6 +1,7 @@
 #pragma once
 #include "game.h"
 #include "vector.h"
+#include <vector>
 
 class Enemy
 {
@@ -11,6 +12,7 @@ public:
 	void Update(double dt);
 	void Render();
 	Point pos_;
+	std::vector<Point> points_;
 
 private:
 	int width_ = 44;
@@ -22,6 +24,14 @@ private:
 	Vector motion_;
 	Point start_pos_;
 	float distance = 200.f;
+
+	Point turn_up;
+	Point turn_down;
+	Point turn_right;
+	Point turn_left;
+
+	int current_point_ = 0;
+
 
 	void ChangeDir(const char direction);
 	void CirclePattern();
