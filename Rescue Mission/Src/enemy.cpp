@@ -28,18 +28,6 @@ Enemy::~Enemy()
 
 void Enemy::Update(double dt)
 {
-//	if (y_ == 0)
-//	{
-//		ChangeDir('l');
-//	}
-//	else if (y_ + height_ >= 720)
-//	{
-//		ChangeDir('d');
-//	}
-
-	motion_ = v_;
-	motion_.x_ *= dt;
-	motion_.y_ *= dt;
 	if (!points_.empty())
 	{
 		Point& next_point = points_[current_point_];
@@ -62,17 +50,8 @@ void Enemy::Update(double dt)
 		}
 	}
 
-
-
-
-	
-	//std::cout << "x " << int(vx_*dt*10) << " y " << int(vy_*dt*10) << " a " << a << std::endl;
-	
 	destRect.y = pos_.y_;
 	destRect.x = pos_.x_;
-
-
-
 
 }
 

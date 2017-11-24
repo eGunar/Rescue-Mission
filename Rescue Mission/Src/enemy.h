@@ -21,7 +21,6 @@ private:
 	bool circle_active_ = false;
 	int a = 0;
 	Vector v_;
-	Vector motion_;
 	Point start_pos_;
 	float distance = 200.f;
 
@@ -31,10 +30,6 @@ private:
 	Point turn_left;
 
 	int current_point_ = 0;
-
-
-	void ChangeDir(const char direction);
-	void CirclePattern();
 
 	SDL_Texture* texture;
 	SDL_Rect srcRect;

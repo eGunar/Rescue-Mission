@@ -53,8 +53,12 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	enemy->points_.push_back(Point(100, 300));
 	enemy->points_.push_back(Point(300, 300));
 	enemy->points_.push_back(Point(500, 500));
+	enemy->points_.push_back(Point(800, 800));
+	enemy->points_.push_back(Point(1000, 100));
 
 	enemy2 = new Enemy(600, 500);
+	enemy2->points_.push_back(Point(800, 500));
+	enemy2->points_.push_back(Point(600, 500));
 }
 
 void Game::HandleEvents()
