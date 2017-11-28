@@ -57,10 +57,14 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	points.push_back(Point(500, 100));
 	enemy = new Enemy(points, 600);
 
+	std::vector <Point> points2;
 
-//	enemy2 = new Enemy(600, 500);
-//	enemy2->points_.push_back(Point(800, 500));
-//	enemy2->points_.push_back(Point(600, 500));
+	points2.push_back(Point(500, 300));
+	points2.push_back(Point(400, 200));
+	points2.push_back(Point(300, 600));
+	points2.push_back(Point(900, 100));
+	enemy2 = new Enemy(points2, 300);
+
 }
 
 void Game::HandleEvents()
@@ -81,7 +85,7 @@ void Game::Update(double dt)
 {
 	player->Update(dt);
 	enemy->Update(dt);
-//	enemy2->Update(dt);
+	enemy2->Update(dt);
 }
 
 void Game::Render()
@@ -90,7 +94,7 @@ void Game::Render()
 	player->Render();
 	prisoner->Render();
 	enemy->Render();
-	//enemy2->Render();
+	enemy2->Render();
 	SDL_RenderPresent(renderer);
 }
 
