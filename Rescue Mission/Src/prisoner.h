@@ -16,4 +16,5 @@ public:
 private:
 	SDL_Rect srcRect, destRect;
 	SDL_Texture* texture;
+
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include <cmath>
+#include <math.h>
 
 class Vector 
 {
@@ -13,7 +13,9 @@ public:
 	float x_;
 	float y_;
 
+
 	float Length();
+
 };
 
 class Point
@@ -27,6 +29,9 @@ public:
 	Point() {}
 	Point AddVector(Vector v);
 	static float Distance(Point a, Point b);
+	static float Get_Angle(Point a, Point b);
 	float x_;
 	float y_;
+
+
 };

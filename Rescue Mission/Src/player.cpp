@@ -7,11 +7,12 @@ Player::Player(float x, float y)
 
 	pos_.x_ = x;
 	pos_.y_ = y;
+	angle_ = 180;
 
 	srcRect.h = 44;
 	srcRect.w = 44;
-	srcRect.x = 44;
-	srcRect.y = 44;
+	srcRect.x = 0;
+	srcRect.y = 0;
 
 	destRect.h = srcRect.h;
 	destRect.w = srcRect.w;
@@ -101,13 +102,12 @@ void Player::Update(double dt)
 	destRect.x = pos_.x_;
 	destRect.y = pos_.y_;
 
-
 	
 }
 
 void Player::Render()
 {
-	TextureManager::Draw(texture, srcRect, destRect);
+	TextureManager::Draw(texture, srcRect, destRect, angle_);
 }
 
 
@@ -118,31 +118,27 @@ void Player::ChangeDir(const char direction)
 	{
 		v_.x_ = 0 * speed_;
 		v_.y_ = 1 * speed_;
-		srcRect.x = 0;
-		srcRect.y = 0;
+		angle_ = 270;
 	}
 	else if (direction == 'u')
 	{
 		v_.x_ = 0 * speed_;
 		v_.y_ = -1 * speed_;
-		srcRect.x = 0;
-		srcRect.y = 44;
+		angle_ = 90;
 
 	}
 	else if (direction == 'l')
 	{
 		v_.x_ = -1 * speed_;
 		v_.y_ = 0 * speed_;
-		srcRect.x = 44;
-		srcRect.y = 0;
+		angle_ = 0;
 
 	}
 	else if (direction == 'r')
 	{
 		v_.x_ = 1 * speed_;
 		v_.y_ = 0 * speed_;
-		srcRect.x = 44;
-		srcRect.y = 44;
+		angle_ = 180;
 
 	}
 }

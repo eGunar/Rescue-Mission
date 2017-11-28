@@ -49,16 +49,18 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
-	enemy = new Enemy(500, 500);
-	enemy->points_.push_back(Point(100, 300));
-	enemy->points_.push_back(Point(300, 300));
-	enemy->points_.push_back(Point(500, 500));
-	enemy->points_.push_back(Point(800, 800));
-	enemy->points_.push_back(Point(1000, 100));
+	std::vector <Point> points;
 
-	enemy2 = new Enemy(600, 500);
-	enemy2->points_.push_back(Point(800, 500));
-	enemy2->points_.push_back(Point(600, 500));
+	points.push_back(Point(700, 100));
+	points.push_back(Point(700, 600));
+	points.push_back(Point(500, 600));
+	points.push_back(Point(500, 100));
+	enemy = new Enemy(points, 600);
+
+
+//	enemy2 = new Enemy(600, 500);
+//	enemy2->points_.push_back(Point(800, 500));
+//	enemy2->points_.push_back(Point(600, 500));
 }
 
 void Game::HandleEvents()
@@ -79,7 +81,7 @@ void Game::Update(double dt)
 {
 	player->Update(dt);
 	enemy->Update(dt);
-	enemy2->Update(dt);
+//	enemy2->Update(dt);
 }
 
 void Game::Render()
@@ -88,7 +90,7 @@ void Game::Render()
 	player->Render();
 	prisoner->Render();
 	enemy->Render();
-	enemy2->Render();
+	//enemy2->Render();
 	SDL_RenderPresent(renderer);
 }
 

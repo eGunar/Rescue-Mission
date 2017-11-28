@@ -7,6 +7,7 @@
 #include "texturemanager.h"
 #include "enemy.h"
 #include "vector.h"
+#include <vector>
 
 
 
@@ -30,6 +31,7 @@ public:
 private:
 	bool isRunning;
 	SDL_Window *window;
+
 
 
 

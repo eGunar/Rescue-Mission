@@ -1,5 +1,5 @@
 #include "vector.h"
-#include <iostream>
+
 Point Point::AddVector(Vector v)
 {
 	Point p2;
@@ -17,7 +17,16 @@ float Point::Distance(Point a, Point b)
 	return sqrt(dx*dx + dy*dy);
 }
 
+float Point::Get_Angle(Point a, Point b)
+{
+	double pi = 3.1415926535897;
+	float dx = (a.x_ - b.x_);
+	float dy = (a.y_ - b.y_);
+	return double(atan2(dy, dx) * 180.f / pi);
+}
+
 float Vector::Length()
 {
 	return sqrtf(x_ * x_ + y_ *y_);
 }
+

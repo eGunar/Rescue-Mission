@@ -19,10 +19,10 @@ Prisoner::~Prisoner()
 
 void Prisoner::Update()
 {
-	
+
 }
 
 void Prisoner::Render()
 {
-	TextureManager::Draw(texture, srcRect, destRect);
+	TextureManager::Draw(texture, srcRect, destRect, 0);
 }

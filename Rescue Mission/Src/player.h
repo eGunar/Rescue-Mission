@@ -32,4 +32,5 @@ private:
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 
+	double angle_;
 };
