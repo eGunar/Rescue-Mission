@@ -1,4 +1,5 @@
 #include "game.h"
+using json = nlohmann::json;
 
 Player* player;
 Prisoner* prisoner;
@@ -50,20 +51,11 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
 	std::vector <Point> points;
-
-	points.push_back(Point(700, 100));
-	points.push_back(Point(700, 600));
-	points.push_back(Point(500, 600));
-	points.push_back(Point(500, 100));
+	points = { Point(700, 100), Point(700, 600), Point(500, 600), Point(500, 100) };
 	enemy = new Enemy(points, 600);
 
-	std::vector <Point> points2;
-
-	points2.push_back(Point(500, 300));
-	points2.push_back(Point(400, 200));
-	points2.push_back(Point(300, 600));
-	points2.push_back(Point(900, 100));
-	enemy2 = new Enemy(points2, 300);
+	points = { Point(600, 100), Point(400, 688), Point(388, 600), Point(500, 100) };
+	enemy2 = new Enemy(points, 300);
 
 }
 
