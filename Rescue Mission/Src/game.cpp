@@ -1,12 +1,9 @@
 #include "game.h"
-using json = nlohmann::json;
-
+#include "rapidjson/document.h"
 Player* player;
 Prisoner* prisoner;
-Enemy* enemy;
-Enemy* enemy2;
 SDL_Renderer* Game::renderer = nullptr;
-
+using namespace rapidjson;
 
 Game::Game()
 {
@@ -50,13 +47,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
-	std::vector <Point> points;
-	points = { Point(700, 100), Point(700, 600), Point(500, 600), Point(500, 100) };
-	enemy = new Enemy(points, 600);
-
-	points = { Point(600, 100), Point(400, 688), Point(388, 600), Point(500, 100) };
-	enemy2 = new Enemy(points, 300);
-
+	LoadLevel();
 }
 
 void Game::HandleEvents()
@@ -76,8 +67,10 @@ void Game::HandleEvents()
 void Game::Update(double dt)
 {
 	player->Update(dt);
-	enemy->Update(dt);
-	enemy2->Update(dt);
+	for (auto& enemy : enemies)
+	{
+		enemy->Update(dt);
+	}
 }
 
 void Game::Render()
@@ -85,15 +78,42 @@ void Game::Render()
 	SDL_RenderClear(renderer);
 	player->Render();
 	prisoner->Render();
-	enemy->Render();
-	enemy2->Render();
+	for (auto& enemy : enemies)
+	{
+		enemy->Render();
+	}
 	SDL_RenderPresent(renderer);
 }
 
 void Game::Clean()
 {
+	for (auto& enemy : enemies)
+	{
+		delete enemy;
+	}
+
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Game quit..\n";
+}
+
+void Game::LoadLevel()
+{
+	std::ifstream t("Levels/level_1.json");
+	std::string str((std::istreambuf_iterator<char>(t)),
+		std::istreambuf_iterator<char>());
+
+	Document document;
+	document.Parse(str.c_str());
+
+	for (auto& guard : document["guards"].GetArray())
+	{
+		std::vector <Point> points;
+		for (auto& point : guard["points"].GetArray())
+		{
+			points.push_back(Point(point["x"].GetFloat(), point["y"].GetFloat()));
+		}
+		enemies.push_back( new Enemy(points, guard["speed"].GetFloat()));
+	}
 }

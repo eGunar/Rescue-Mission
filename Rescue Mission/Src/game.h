@@ -8,8 +8,8 @@
 #include "enemy.h"
 #include "vector.h"
 #include <vector>
-#include "json.hpp"
 #include <fstream>
+#include <streambuf>
 
 
 
@@ -34,9 +34,8 @@ private:
 	bool isRunning;
 	SDL_Window *window;
 
-
-
-
+	void LoadLevel();
+	std::vector <Enemy*> enemies;
 
 };
 
