@@ -14,7 +14,7 @@ float Point::Distance(Point a, Point b)
 	float dx = a.x_ - b.x_;
 	float dy = a.y_ - b.y_;
 
-	return sqrt(dx*dx + dy*dy);
+	return (sqrtf(dx*dx + dy*dy));
 }
 
 float Point::Get_Angle(Point a, Point b)
@@ -27,6 +27,6 @@ float Point::Get_Angle(Point a, Point b)
 
 float Vector::Length()
 {
-	return sqrtf(x_ * x_ + y_ *y_);
+	return (sqrtf(x_ * x_ + y_ *y_));
 }
 

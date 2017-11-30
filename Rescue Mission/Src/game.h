@@ -11,7 +11,7 @@
 #include <fstream>
 #include <streambuf>
 
-
+class Enemy;
 
 class Game {
 

@@ -54,6 +54,7 @@ void Enemy::Update(double dt)
 		}
 	}
 
+	
 	destRect.y = pos_.y_;
 	destRect.x = pos_.x_;
 
