@@ -11,8 +11,8 @@ public:
 
 	void Update(double dt);
 	void Render();
-	Point pos_;
 
+	SDL_Rect hitbox_;
 
 
 private:
@@ -25,6 +25,7 @@ private:
 	Vector v_;
 	Point start_pos_;
 	float distance = 200.f;
+	Point pos_;
 
 	Point turn_up;
 	Point turn_down;

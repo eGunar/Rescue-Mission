@@ -29,12 +29,13 @@ public:
 	bool running() { return isRunning; }
 
 	static SDL_Renderer* renderer;
-
 private:
 	bool isRunning;
 	SDL_Window *window;
 
 	void LoadLevel();
+	
+	void ResetLevel();
 	std::vector <Enemy*> enemies;
 
 };

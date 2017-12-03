@@ -101,7 +101,7 @@ void Player::Update(double dt)
 
 	destRect.x = pos_.x_;
 	destRect.y = pos_.y_;
-
+	hitbox_ = destRect;
 	
 }
 

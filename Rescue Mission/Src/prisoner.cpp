@@ -9,8 +9,10 @@ Prisoner::Prisoner(int x, int y)
 	srcRect.w = 82;
 	srcRect.x = 0;
 	srcRect.y = 0;
-	destRect.h = 46;
-	destRect.w = 82;
+	destRect.h = srcRect.h;
+	destRect.w = srcRect.w;
+
+	hitbox_ = destRect;
 }
 
 Prisoner::~Prisoner()

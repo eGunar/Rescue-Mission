@@ -12,11 +12,11 @@ public:
 	void HandleEvents(const SDL_Event& event);
 	void Update(double dt);
 	void Render();
-	Point pos_;
+	SDL_Rect hitbox_;
 
 private:
 	void ChangeDir(const char direction);
-
+	Point pos_;
 	Vector v_;
 	int width_;
 	int height_;

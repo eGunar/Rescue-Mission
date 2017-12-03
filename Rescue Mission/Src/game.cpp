@@ -45,8 +45,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	{
 		isRunning = false;
 	}
-	player = new Player(400.f, 340.f);
-	prisoner = new Prisoner(1000, 340);
+
 	LoadLevel();
 }
 
@@ -70,6 +69,14 @@ void Game::Update(double dt)
 	for (auto& enemy : enemies)
 	{
 		enemy->Update(dt);
+		if (SDL_HasIntersection(&player->hitbox_, &enemy->hitbox_))
+		{
+			std::cout << "Enemy collision" << std::endl;
+		}
+	}
+	if (SDL_HasIntersection(&player->hitbox_, &prisoner->hitbox_))
+	{
+		std::cout << "colliding" << std::endl;
 	}
 }
 
@@ -91,12 +98,14 @@ void Game::Clean()
 	{
 		delete enemy;
 	}
-
+	delete player;
+	delete prisoner;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Game quit..\n";
 }
+
 
 void Game::LoadLevel()
 {
@@ -116,4 +125,17 @@ void Game::LoadLevel()
 		}
 		enemies.push_back( new Enemy(points, guard["speed"].GetFloat()));
 	}
+	player = new Player(400.f, 340.f);
+	prisoner = new Prisoner(1000, 340);
+}
+
+void Game::ResetLevel()
+{	
+	for (auto& enemy : enemies)
+	{
+		delete enemy;
+	}
+	delete player;
+	delete prisoner;
+
 }
