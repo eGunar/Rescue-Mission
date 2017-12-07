@@ -31,8 +31,6 @@ void Level::Load(const char* lvl)
 void Level::Reset(const char * lvl)
 {
 	enemies.clear();
-	player = nullptr;
-	prisoner = nullptr;
 	Load(lvl);
 }
 
