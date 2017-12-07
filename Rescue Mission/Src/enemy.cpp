@@ -1,5 +1,6 @@
 #include "enemy.h"
-
+#include "game.h"
+#include "texturemanager.h"
 
 Enemy::Enemy(std::vector<Point> points, float speed)
 {

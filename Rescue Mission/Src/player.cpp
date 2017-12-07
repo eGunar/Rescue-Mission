@@ -1,5 +1,6 @@
 #include "player.h"
-
+#include "game.h"
+#include "texturemanager.h"
 
 Player::Player(float x, float y)
 {

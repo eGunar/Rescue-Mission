@@ -1,9 +1,8 @@
 #include "game.h"
-#include "rapidjson/document.h"
-Player* player;
-Prisoner* prisoner;
+
+
 SDL_Renderer* Game::renderer = nullptr;
-using namespace rapidjson;
+
 
 Game::Game()
 {
@@ -46,14 +45,16 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 		isRunning = false;
 	}
 
-	LoadLevel();
+	lvl = new Level();
+	lvl->Load("Levels/level_1.json");
+	
 }
 
 void Game::HandleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
-	player->HandleEvents(event);
+	lvl->player->HandleEvents(event);
 	switch (event.type) {
 	case SDL_QUIT:
 		isRunning = false;
@@ -65,16 +66,16 @@ void Game::HandleEvents()
 
 void Game::Update(double dt)
 {
-	player->Update(dt);
-	for (auto& enemy : enemies)
+	lvl->player->Update(dt);
+	for (auto& enemy : lvl->enemies)
 	{
 		enemy->Update(dt);
-		if (SDL_HasIntersection(&player->hitbox_, &enemy->hitbox_))
+		if (SDL_HasIntersection(&lvl->player->hitbox_, &enemy->hitbox_))
 		{
 			std::cout << "Enemy collision" << std::endl;
 		}
 	}
-	if (SDL_HasIntersection(&player->hitbox_, &prisoner->hitbox_))
+	if (SDL_HasIntersection(&lvl->player->hitbox_, &lvl->prisoner->hitbox_))
 	{
 		std::cout << "colliding" << std::endl;
 	}
@@ -83,9 +84,9 @@ void Game::Update(double dt)
 void Game::Render()
 {
 	SDL_RenderClear(renderer);
-	player->Render();
-	prisoner->Render();
-	for (auto& enemy : enemies)
+	lvl->player->Render();
+	lvl->prisoner->Render();
+	for (auto& enemy : lvl->enemies)
 	{
 		enemy->Render();
 	}
@@ -94,48 +95,9 @@ void Game::Render()
 
 void Game::Clean()
 {
-	for (auto& enemy : enemies)
-	{
-		delete enemy;
-	}
-	delete player;
-	delete prisoner;
+	lvl->Clean();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	std::cout << "Game quit..\n";
-}
-
-
-void Game::LoadLevel()
-{
-	std::ifstream t("Levels/level_1.json");
-	std::string str((std::istreambuf_iterator<char>(t)),
-		std::istreambuf_iterator<char>());
-
-	Document document;
-	document.Parse(str.c_str());
-
-	for (auto& guard : document["guards"].GetArray())
-	{
-		std::vector <Point> points;
-		for (auto& point : guard["points"].GetArray())
-		{
-			points.push_back(Point(point["x"].GetFloat(), point["y"].GetFloat()));
-		}
-		enemies.push_back( new Enemy(points, guard["speed"].GetFloat()));
-	}
-	player = new Player(400.f, 340.f);
-	prisoner = new Prisoner(1000, 340);
-}
-
-void Game::ResetLevel()
-{	
-	for (auto& enemy : enemies)
-	{
-		delete enemy;
-	}
-	delete player;
-	delete prisoner;
-
 }

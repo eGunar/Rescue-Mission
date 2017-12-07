@@ -1,4 +1,6 @@
 #include "prisoner.h"
+#include "texturemanager.h"
+
 
 Prisoner::Prisoner(int x, int y)
 {

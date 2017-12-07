@@ -1,7 +1,7 @@
 #pragma once
-#include "game.h"
-#include "vector.h"
 
+#include "vector.h"
+#include "SDL.h"
 
 class Player
 {

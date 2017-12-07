@@ -1,17 +1,13 @@
 #pragma once
 #include "SDL.h"
-#include "SDL_image.h"
 #include <iostream>
 #include "player.h"
 #include "prisoner.h"
-#include "texturemanager.h"
 #include "enemy.h"
-#include "vector.h"
 #include <vector>
-#include <fstream>
-#include <streambuf>
+#include "level.h"
 
-class Enemy;
+
 
 class Game {
 
@@ -33,11 +29,7 @@ private:
 	bool isRunning;
 	SDL_Window *window;
 
-	void LoadLevel();
-	
-	void ResetLevel();
-	std::vector <Enemy*> enemies;
-
+	Level* lvl;
 };
 
 

@@ -1,6 +1,6 @@
 #pragma once
-#include "game.h"
 #include <vector>
+#include "SDL.h"
 #include "vector.h"
 
 class Enemy
