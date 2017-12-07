@@ -77,7 +77,7 @@ void Game::Update(double dt)
 	}
 	if (SDL_HasIntersection(&lvl->player->hitbox_, &lvl->prisoner->hitbox_))
 	{
-		std::cout << "colliding" << std::endl;
+		lvl->Reset("Levels/level_2.json");
 	}
 }
 

@@ -30,6 +30,7 @@ void Level::Load(const char* lvl)
 
 void Level::Reset(const char * lvl)
 {
+	Clean();
 	enemies.clear();
 	Load(lvl);
 }
