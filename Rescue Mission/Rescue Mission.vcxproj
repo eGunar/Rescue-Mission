@@ -130,6 +130,7 @@
     <ClCompile Include="Src\texturemanager.cpp" />
     <ClCompile Include="Src\timer.cpp" />
     <ClCompile Include="Src\vector.cpp" />
+    <ClCompile Include="Src\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\enemy.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Src\texturemanager.h" />
     <ClInclude Include="Src\timer.h" />
     <ClInclude Include="Src\vector.h" />
+    <ClInclude Include="Src\wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

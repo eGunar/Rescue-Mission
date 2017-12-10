@@ -26,6 +26,7 @@ void Level::Load(const char* lvl)
 	}
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
+	wall = new Wall(0, 0);
 }
 
 void Level::Reset(const char * lvl)
@@ -43,4 +44,5 @@ void Level::Clean()
 	}
 	delete player;
 	delete prisoner;
+	delete wall;
 }

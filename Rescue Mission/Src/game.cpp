@@ -67,6 +67,7 @@ void Game::HandleEvents()
 void Game::Update(double dt)
 {
 	lvl->player->Update(dt);
+	lvl->wall->Update();
 	for (auto& enemy : lvl->enemies)
 	{
 		enemy->Update(dt);
@@ -86,6 +87,7 @@ void Game::Render()
 	SDL_RenderClear(renderer);
 	lvl->player->Render();
 	lvl->prisoner->Render();
+	lvl->wall->Render();
 	for (auto& enemy : lvl->enemies)
 	{
 		enemy->Render();
