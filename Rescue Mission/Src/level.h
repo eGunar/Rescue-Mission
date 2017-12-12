@@ -9,9 +9,9 @@ class Level {
 
 public:
 	std::vector<Enemy*> enemies;
+	std::vector<Wall*> walls;
 	Player* player;
 	Prisoner* prisoner;
-	Wall* wall;
 	void Load(const char* lvl);
 	void Reset(const char* lvl);
 

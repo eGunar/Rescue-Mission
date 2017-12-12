@@ -1,9 +1,9 @@
 #include "wall.h"
 #include "texturemanager.h"
 
-Wall::Wall(int x, int y)
+Wall::Wall(float x, float y)
 {
-	texture = TextureManager::LoadTexture("assets/wall.png");
+	texture = TextureManager::LoadTexture("assets/wall2.png");
 	srcRect.h = 32;
 	srcRect.w = 64;
 	srcRect.x = 0;
@@ -24,12 +24,12 @@ Wall::~Wall()
 void Wall::Update()
 {
 	a++;
-	if (a == 4)
+	if (a == 6)
 	{
 		srcRect.x += 64;
 		a = 0;
 	}
-	if (srcRect.x >= 64*12)
+	if (srcRect.x >= 64*3)
 	{
 		srcRect.x = 0;
 	}

@@ -15,24 +15,35 @@ void Level::Load(const char* lvl)
 	Document document;
 	document.Parse(str.c_str());
 
-	for (auto& guard : document["guards"].GetArray())
+	if (document.HasMember("guards"))
 	{
-		std::vector <Point> points;
-		for (auto& point : guard["points"].GetArray())
+		for (auto& guard : document["guards"].GetArray())
 		{
-			points.push_back(Point(point["x"].GetFloat(), point["y"].GetFloat()));
+			std::vector <Point> points;
+			for (auto& point : guard["points"].GetArray())
+			{
+				points.push_back(Point(point["x"].GetFloat(), point["y"].GetFloat()));
+			}
+			enemies.push_back(new Enemy(points, guard["speed"].GetFloat()));
 		}
-		enemies.push_back(new Enemy(points, guard["speed"].GetFloat()));
+	}
+	if (document.HasMember("walls"))
+	{
+		for (auto& wall : document["walls"].GetArray())
+		{
+			walls.push_back(new Wall(wall["x"].GetFloat(), wall["y"].GetFloat()));
+		}
 	}
 	player = new Player(400.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
-	wall = new Wall(0, 0);
+
 }
 
 void Level::Reset(const char * lvl)
 {
 	Clean();
 	enemies.clear();
+	walls.clear();
 	Load(lvl);
 }
 
@@ -42,7 +53,10 @@ void Level::Clean()
 	{
 		delete enemy;
 	}
+	for (auto& wall : walls)
+	{
+		delete wall;
+	}
 	delete player;
 	delete prisoner;
-	delete wall;
 }
