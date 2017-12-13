@@ -4,7 +4,7 @@
 class Wall
 {
 public:
-	Wall(float x, float y);
+	Wall(float x, float y, float angle);
 	~Wall();
 
 	void Update();
@@ -16,6 +16,7 @@ private:
 	SDL_Rect srcRect;
 	SDL_Rect destRect;
 	SDL_Texture* texture;
+	float angle_;
 
 	int a = 0;
 };

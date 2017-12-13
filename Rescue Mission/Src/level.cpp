@@ -31,10 +31,10 @@ void Level::Load(const char* lvl)
 	{
 		for (auto& wall : document["walls"].GetArray())
 		{
-			walls.push_back(new Wall(wall["x"].GetFloat(), wall["y"].GetFloat()));
+			walls.push_back(new Wall(wall["x"].GetFloat(), wall["y"].GetFloat(), wall["rotation"].GetFloat()));
 		}
 	}
-	player = new Player(400.f, 340.f);
+	player = new Player(100.f, 340.f);
 	prisoner = new Prisoner(1000, 340);
 
 }

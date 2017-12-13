@@ -35,7 +35,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		if (renderer)
 		{
-			SDL_SetRenderDrawColor(renderer, 8, 166, 19, 255);
+			SDL_SetRenderDrawColor(renderer, 147, 151, 158, 255);
 			std::cout << "Renderer created\n";
 		}
 		isRunning = true;
@@ -70,6 +70,10 @@ void Game::Update(double dt)
 	for (auto& wall : lvl->walls)
 	{
 		wall->Update();
+		if (SDL_HasIntersection(&lvl->player->hitbox_, &wall->hitbox_))
+		{
+			lvl->Reset("Levels/level_1.json");
+		}
 	}
 	for (auto& enemy : lvl->enemies)
 	{
@@ -90,6 +94,7 @@ void Game::Render()
 	SDL_RenderClear(renderer);
 	lvl->player->Render();
 	lvl->prisoner->Render();
+
 	for (auto& wall : lvl->walls)
 	{
 		wall->Render();
