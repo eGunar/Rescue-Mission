@@ -21,7 +21,8 @@ private:
 	int width_;
 	int height_;
 	float speed_ = 300.f;
-	int animation_ = 0;
+	int animation = 0;
+
 
 	bool movingLeft;
 	bool movingRight;

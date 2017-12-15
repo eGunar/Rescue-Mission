@@ -41,10 +41,10 @@ void Wall::Update()
 	a++;
 	if (a == 6)
 	{
-		srcRect.y += 17;
+		srcRect.y += srcRect.h;
 		a = 0;
 	}
-	if (srcRect.y >= 17*6)
+	if (srcRect.y >= srcRect.h*6)
 	{
 		srcRect.y = 0;
 	}

@@ -4,14 +4,14 @@
 
 Player::Player(float x, float y)
 {
-	texture = TextureManager::LoadTexture("assets/player.png");
+	texture = TextureManager::LoadTexture("assets/spaceman.png");
 
 	pos_.x_ = x;
 	pos_.y_ = y;
 	angle_ = 180;
 
-	srcRect.h = 44;
-	srcRect.w = 44;
+	srcRect.h = 65;
+	srcRect.w = 54;
 	srcRect.x = 0;
 	srcRect.y = 0;
 
@@ -99,10 +99,24 @@ void Player::Update(double dt)
 	motion.x_ *= dt;
 	motion.y_ *= dt;
 	pos_ = pos_.AddVector(motion);
-
+	
 	destRect.x = pos_.x_;
 	destRect.y = pos_.y_;
 	hitbox_ = destRect;
+
+	if (motion.Length() > 0)
+	{
+		animation++;
+		if (animation == 6)
+		{
+			srcRect.x += destRect.w;
+			animation = 0;
+		}
+		if (srcRect.x >= destRect.w * 8)
+		{
+			srcRect.x = 0;
+		}
+	}
 	
 }
 
