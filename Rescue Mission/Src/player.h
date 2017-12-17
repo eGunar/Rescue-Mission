@@ -15,13 +15,12 @@ public:
 	SDL_Rect hitbox_;
 
 private:
-	void ChangeDir(const char direction);
 	Point pos_;
-	Vector v_;
-	int width_;
-	int height_;
+	Vector velocity_;
 	float speed_ = 300.f;
 	int animation = 0;
+	int idle_animation = 0;
+
 
 
 	bool movingLeft;

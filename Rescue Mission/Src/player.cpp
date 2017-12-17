@@ -76,46 +76,96 @@ void Player::Update(double dt)
 {
 	if (movingLeft)
 	{
-		ChangeDir('l');
+		velocity_.x_ = -speed_;
+		velocity_.y_ = 0;
+		angle_ = 0;
 	}
 	else if (movingRight)
 	{
-		ChangeDir('r');
+		velocity_.x_ = speed_;
+		velocity_.y_ = 0;
+		angle_ = 180;
 	}
 	else if (movingUp)
 	{
-		ChangeDir('u');
+		velocity_.x_ = 0;
+		velocity_.y_ = -speed_;
+		angle_ = 90;
 	}
 	else if (movingDown)
 	{
-		ChangeDir('d');
+		velocity_.x_ = 0;
+		velocity_.y_ = speed_;
+		angle_ = 270;
 	}
 	else
 	{
-		v_.x_ = 0;
-		v_.y_ = 0;
+		velocity_.x_ = 0;
+		velocity_.y_ = 0;
 	}
-	Vector motion = v_;
-	motion.x_ *= dt;
-	motion.y_ *= dt;
-	pos_ = pos_.AddVector(motion);
+
+	velocity_.x_ = velocity_.x_ * dt;
+	velocity_.y_ = velocity_.y_ * dt;
+
+	pos_ = pos_.AddVector(velocity_);
 	
 	destRect.x = pos_.x_;
 	destRect.y = pos_.y_;
 	hitbox_ = destRect;
 
-	if (motion.Length() > 0)
+	if (velocity_.Length() > 0)
 	{
+		idle_animation = 0;
+		srcRect.y = 0; 
 		animation++;
 		if (animation == 6)
 		{
-			srcRect.x += destRect.w;
+			srcRect.x += srcRect.w;
 			animation = 0;
 		}
-		if (srcRect.x >= destRect.w * 8)
+		if (srcRect.x >= srcRect.w * 8)
 		{
 			srcRect.x = 0;
 		}
+	}
+	else
+	{
+		idle_animation++;
+		if (idle_animation >= 120)
+		{
+			srcRect.y = 65;
+			animation++;
+			if (animation == 6)
+			{
+				srcRect.x += srcRect.w;
+				animation = 0;
+			}
+			if (srcRect.x >= srcRect.w * 14)
+			{
+				srcRect.x = 0;
+				idle_animation = 0;
+			}
+		}
+		else
+		{
+			srcRect.x = 0;
+		}
+	}
+	if (pos_.x_ >= 1280 - destRect.w)
+	{
+		pos_.x_ = 1280 - destRect.w;
+	}
+	else if (pos_.x_ <= 0)
+	{
+		pos_.x_ = 0;
+	}
+	if (pos_.y_ >= 720 - destRect.h)
+	{
+		pos_.y_ = 720 - destRect.h;
+	}
+	else if (pos_.y_ <= 0)
+	{
+		pos_.y_ = 1;
 	}
 	
 }
@@ -125,35 +175,3 @@ void Player::Render()
 	TextureManager::Draw(texture, srcRect, destRect, angle_);
 }
 
-
-
-void Player::ChangeDir(const char direction)
-{
-	if (direction == 'd')
-	{
-		v_.x_ = 0 * speed_;
-		v_.y_ = 1 * speed_;
-		angle_ = 270;
-	}
-	else if (direction == 'u')
-	{
-		v_.x_ = 0 * speed_;
-		v_.y_ = -1 * speed_;
-		angle_ = 90;
-
-	}
-	else if (direction == 'l')
-	{
-		v_.x_ = -1 * speed_;
-		v_.y_ = 0 * speed_;
-		angle_ = 0;
-
-	}
-	else if (direction == 'r')
-	{
-		v_.x_ = 1 * speed_;
-		v_.y_ = 0 * speed_;
-		angle_ = 180;
-
-	}
-}
